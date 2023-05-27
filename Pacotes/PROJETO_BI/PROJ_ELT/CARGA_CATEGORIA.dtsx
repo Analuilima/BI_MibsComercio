@@ -1,0 +1,937 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/6/2022 11:10:23 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ANALIMA"
+  DTS:CreatorName="ANALIMA\limaa"
+  DTS:DTSID="{3FBF7F5A-6C75-460A-85EE-C6D5BFB41C78}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.845.0"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="CARGA_CATEGORIA"
+  DTS:PackageType="5"
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{450F0B42-FB31-4D00-A536-798EF6F294DC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CARGA CATEGORIA DW"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{321481BC-4DD9-4A13-B36B-B9DE67998D4E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CARGA CATEGORIA DW">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\CARGA CATEGORIA DW\DW CATEGORIA"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{73AA0337-8F0B-4AF3-96B5-CDC4CDDF16B5}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DW CATEGORIA"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="CATEGORIA DW"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[CATEGORIA]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Connections[OleDbConnection]"
+                      connectionManagerID="{6A7BBDC3-7D6E-4B63-A5FF-DA264F7BE387}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ANALIMA.COMERCIO_DW]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Inputs[Entrada de Destino OLE DB].Columns[IDCATEGORIA]"
+                          cachedDataType="i4"
+                          cachedName="IDCATEGORIA"
+                          externalMetadataColumnId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDCATEGORIA]"
+                          lineageId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Origem OLE DB].Columns[IDCATEGORIA]" />
+                        <inputColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Inputs[Entrada de Destino OLE DB].Columns[NOME]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="NOME"
+                          externalMetadataColumnId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
+                          lineageId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Origem OLE DB].Columns[NOME]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDCATEGORIA]"
+                          dataType="i4"
+                          name="IDCATEGORIA" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="NOME" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origem OLE DB"
+                  name="CATEGORIA STAGE"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT * FROM COMERCIO_STAGE.DBO.ST_CATEGORIA
+WHERE IDCATEGORIA NOT IN
+(SELECT IDCATEGORIA FROM COMERCIO_DW.DBO.CATEGORIA)</property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Connections[OleDbConnection]"
+                      connectionManagerID="{3DBD6907-6AB0-4F4F-A705-88AA351CB61E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ANALIMA.COMERCIO_STAGE]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Origem OLE DB]"
+                      name="Saída de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Origem OLE DB].Columns[IDCATEGORIA]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Origem OLE DB].ExternalColumns[IDCATEGORIA]"
+                          lineageId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Origem OLE DB].Columns[IDCATEGORIA]"
+                          name="IDCATEGORIA"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Origem OLE DB].Columns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
+                          length="50"
+                          lineageId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Origem OLE DB].Columns[NOME]"
+                          name="NOME"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Origem OLE DB].ExternalColumns[IDCATEGORIA]"
+                          dataType="i4"
+                          name="IDCATEGORIA" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="NOME" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Origem OLE DB]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Origem OLE DB].Columns[IDCATEGORIA]"
+                          dataType="i4"
+                          lineageId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Origem OLE DB].Columns[IDCATEGORIA]"
+                          name="IDCATEGORIA" />
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
+                          name="NOME" />
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\CARGA CATEGORIA DW\DW CATEGORIA.Paths[Saída de Origem OLE DB]"
+                  endId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Origem OLE DB"
+                  startId="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Origem OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\CARGA CATEGORIA STAGE"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{B4E5C043-68A3-4F5D-9F94-DCA2367C2FAC}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CARGA CATEGORIA STAGE">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{B6E9A262-AC1D-483E-B001-486B26F34358}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="STAGE CATEGORIA"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origem OLE DB"
+                  name="CATEGORIA OLTP"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT NOME, IDCATEGORIA
+FROM     CATEGORIA</property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Connections[OleDbConnection]"
+                      connectionManagerID="{C11AD04D-7AA1-46C0-B5A1-CC79A8043C05}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ANALIMA.COMERCIO_OLTP]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Origem OLE DB]"
+                      name="Saída de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Origem OLE DB].Columns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
+                          length="50"
+                          lineageId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Origem OLE DB].Columns[NOME]"
+                          name="NOME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Origem OLE DB].Columns[IDCATEGORIA]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDCATEGORIA]"
+                          lineageId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Origem OLE DB].Columns[IDCATEGORIA]"
+                          name="IDCATEGORIA"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="NOME" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDCATEGORIA]"
+                          dataType="i4"
+                          name="IDCATEGORIA" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Erro de Origem OLE DB]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
+                          name="NOME" />
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDCATEGORIA]"
+                          dataType="i4"
+                          lineageId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDCATEGORIA]"
+                          name="IDCATEGORIA" />
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="CATEGORIA STAGE"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[ST_CATEGORIA]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Connections[OleDbConnection]"
+                      connectionManagerID="{3DBD6907-6AB0-4F4F-A705-88AA351CB61E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ANALIMA.COMERCIO_STAGE]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Inputs[Entrada de Destino OLE DB].Columns[NOME]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="NOME"
+                          externalMetadataColumnId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
+                          lineageId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Origem OLE DB].Columns[NOME]" />
+                        <inputColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Inputs[Entrada de Destino OLE DB].Columns[IDCATEGORIA]"
+                          cachedDataType="i4"
+                          cachedName="IDCATEGORIA"
+                          externalMetadataColumnId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDCATEGORIA]"
+                          lineageId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Origem OLE DB].Columns[IDCATEGORIA]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDCATEGORIA]"
+                          dataType="i4"
+                          name="IDCATEGORIA" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="NOME" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA.Paths[Saída de Origem OLE DB]"
+                  endId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Origem OLE DB"
+                  startId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP.Outputs[Saída de Origem OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\CARGA CATEGORIA STAGE\TRUNCATE ST_CATEGORIA"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{28426FBD-8C0E-4A4A-B5D0-6900DBA4A18E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE ST_CATEGORIA"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3DBD6907-6AB0-4F4F-A705-88AA351CB61E}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE ST_CATEGORIA" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\CARGA CATEGORIA STAGE.PrecedenceConstraints[Restrição]"
+          DTS:CreationName=""
+          DTS:DTSID="{B9934DD9-9BE3-47B8-8E66-D9EDCB8FDF40}"
+          DTS:From="Package\CARGA CATEGORIA STAGE\TRUNCATE ST_CATEGORIA"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição"
+          DTS:To="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{9F011A5D-3E86-4C14-842E-02D1CA885434}"
+      DTS:From="Package\CARGA CATEGORIA STAGE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\CARGA CATEGORIA DW" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\CARGA CATEGORIA DW\DW CATEGORIA"
+          TopLeft="5.5,5.49999999999995" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="196,102.4"
+          Size="196,145.6"
+          Id="Package\CARGA CATEGORIA DW"
+          TopLeft="142.814287855187,339.464706257718" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA"
+          TopLeft="24.3,107.1" />
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\CARGA CATEGORIA STAGE\TRUNCATE ST_CATEGORIA"
+          TopLeft="5.50000000000001,5.50000000000007" />
+        <EdgeLayout
+          Id="Package\CARGA CATEGORIA STAGE.PrecedenceConstraints[Restrição]"
+          TopLeft="109.5,47.1000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="219.2,204"
+          Size="219.2,247.2"
+          Id="Package\CARGA CATEGORIA STAGE"
+          TopLeft="131.214287855187,32.2647062577179" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="240.814287855187,279.464706257718">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="OBJETIVO: Limpar e carregar a &#xA;tabela categoria no banco stage,&#xA;e posteriormennte, carregar a tabela &#xA;categoria no banco DW"
+          ParentId="0339e75a-a061-43a5-9f1a-95fb297c7424"
+          FontInfo="{assembly:Null}"
+          Size="224.8,88"
+          Id="7f8f461d-f41c-4ade-bfec-63b9a1447644"
+          TopLeft="5.5,5.5" />
+        <AnnotationLayout
+          Text="EXECUÇÃO: Limpamos a tabela categoria no banco stage &#xA;e depois a carregamos. Depois de carregado esses dados &#xA;vão para a tabela categoria no banco DW.&#xA;&#xA;CONECTORES: COMERCIO_STAGE e COMERCIO_DW"
+          ParentId="0339e75a-a061-43a5-9f1a-95fb297c7424"
+          FontInfo="{assembly:Null}"
+          Size="334.4,104"
+          Id="ca813e32-ad87-43aa-8f64-d78db0d53f1d"
+          TopLeft="6.21428572644987,88.0882364523867" />
+        <GroupLayout
+          Text="Documentação"
+          ParentId="Package"
+          HeaderHeight="43"
+          IsExpanded="False"
+          PanelSize="345.6,247.2"
+          Size="345.6,43.2"
+          Id="0339e75a-a061-43a5-9f1a-95fb297c7424"
+          TopLeft="391.64286390616,33.7941180438731">
+          <GroupLayout.ChildrenIds>
+            <s:String>7f8f461d-f41c-4ade-bfec-63b9a1447644</s:String>
+            <s:String>ca813e32-ad87-43aa-8f64-d78db0d53f1d</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CARGA CATEGORIA DW\DW CATEGORIA">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE"
+          TopLeft="172.5,122.5" />
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW"
+          TopLeft="181.3,224.1" />
+        <EdgeLayout
+          Id="Package\CARGA CATEGORIA DW\DW CATEGORIA.Paths[Saída de Origem OLE DB]"
+          TopLeft="258.3,164.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="OBJETIVO: Carregar os dados para o banco DW"
+          ParentId="78c87a91-5806-4957-9b77-cf17cda83336"
+          FontInfo="{assembly:Null}"
+          Size="278.4,40"
+          Id="09a128e4-6660-4c0f-9781-188b1a77d203"
+          TopLeft="5.50000000000006,5.5" />
+        <AnnotationLayout
+          Text="EXECUÇÃO:  Pega os dados da tabela catgeoria no banco Stage e carrega para a tabela categoria no banco DW .&#xA;&#xA;CONECTORES: COMERCIO_STAGE E COMERCIO_DW"
+          ParentId="78c87a91-5806-4957-9b77-cf17cda83336"
+          FontInfo="{assembly:Null}"
+          Size="295.2,120"
+          Id="4d05867a-5051-4c26-b367-4a4994b306fe"
+          TopLeft="5.5,70.5000000000001" />
+        <GroupLayout
+          Text="Documentação"
+          ParentId="Package\CARGA CATEGORIA DW\DW CATEGORIA"
+          HeaderHeight="43.2"
+          IsExpanded="False"
+          PanelSize="306.4,245.6"
+          Size="306.4,43.2"
+          Id="78c87a91-5806-4957-9b77-cf17cda83336"
+          TopLeft="419.9,118.5">
+          <GroupLayout.ChildrenIds>
+            <s:String>09a128e4-6660-4c0f-9781-188b1a77d203</s:String>
+            <s:String>4d05867a-5051-4c26-b367-4a4994b306fe</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA DW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA CATEGORIA DW\DW CATEGORIA\CATEGORIA STAGE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE"
+          TopLeft="284.071433315472,209.570589672405" />
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP"
+          TopLeft="287.671433315472,107.970589672405" />
+        <EdgeLayout
+          Id="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA.Paths[Saída de Origem OLE DB]"
+          TopLeft="369.271433315472,149.570589672405">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="OBJETIVO: Carregar a tabela categoria no banco stage"
+          ParentId="539a6da4-ecdb-4c16-a73a-09b409c24717"
+          FontInfo="{assembly:Null}"
+          Size="204,56"
+          Id="49463e18-91ae-4f58-88e1-efc82dfd1ad3"
+          TopLeft="5.5,5.5" />
+        <AnnotationLayout
+          Text="EXECUÇÃO: Pega os dados da tabela categoria no banco OLTP e carrega os dados na tabela categoria no banco stage.&#xA;&#xA;CONECTORES: COMERCIO_OLTP e COMERCIO_STAGE."
+          ParentId="539a6da4-ecdb-4c16-a73a-09b409c24717"
+          FontInfo="{assembly:Null}"
+          Size="212.8,136"
+          Id="4ce5916a-6f3f-46eb-a1b3-984ee8c625d8"
+          TopLeft="8.38570967547821,59.7941184085134" />
+        <GroupLayout
+          Text="Documentação"
+          ParentId="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA"
+          HeaderHeight="43.2"
+          IsExpanded="False"
+          PanelSize="226.4,250.4"
+          Size="226.4,43.2"
+          Id="539a6da4-ecdb-4c16-a73a-09b409c24717"
+          TopLeft="475.071430760987,101.852942527784">
+          <GroupLayout.ChildrenIds>
+            <s:String>49463e18-91ae-4f58-88e1-efc82dfd1ad3</s:String>
+            <s:String>4ce5916a-6f3f-46eb-a1b3-984ee8c625d8</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA OLTP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA CATEGORIA STAGE\STAGE CATEGORIA\CATEGORIA STAGE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

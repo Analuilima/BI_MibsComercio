@@ -1,0 +1,859 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/6/2022 3:39:21 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ANALIMA"
+  DTS:CreatorName="ANALIMA\limaa"
+  DTS:DTSID="{2FF38DF5-0876-48F5-9919-8C5A903107BE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.845.0"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="CARGA_FATO"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{882F35FD-3D99-42F2-AFED-564FCA460B3A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CARGA FATO DW"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{C3168F28-CBDE-43F7-B6DD-77CD96F9E77D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CARGA FATO DW">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\CARGA FATO DW\Tarefa Executar SQL"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{C9983F27-383E-4A6C-9E1C-96B0FE6A1749}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarefa Executar SQL"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{6A7BBDC3-7D6E-4B63-A5FF-DA264F7BE387}"
+              SQLTask:SqlStatementSource="EXEC CARGA_FATO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\CARGA FATO STAGE"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{32A66C6E-D650-4F88-A4D8-C88C6D66D77F}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CARGA FATO STAGE">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{AD923663-F83D-44A7-930C-DEEBCB8849B6}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarefa Fluxo de Dados"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origem OLE DB"
+                  name="FATO OLTP"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[RELATORIO_VENDAS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Connections[OleDbConnection]"
+                      connectionManagerID="{C11AD04D-7AA1-46C0-B5A1-CC79A8043C05}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ANALIMA.COMERCIO_OLTP]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB]"
+                      name="Saída de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDCLIENTE]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDCLIENTE]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDCLIENTE]"
+                          name="IDCLIENTE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDVENDEDOR]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDVENDEDOR]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDVENDEDOR]"
+                          name="IDVENDEDOR"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDPRODUTO]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDPRODUTO]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDPRODUTO]"
+                          name="IDPRODUTO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDFORNECEDOR]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDFORNECEDOR]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDFORNECEDOR]"
+                          name="IDFORNECEDOR"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDNOTA]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDNOTA]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDNOTA]"
+                          name="IDNOTA"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDFORMA]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDFORMA]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDFORMA]"
+                          name="IDFORMA"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[QUANTIDADE]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[QUANTIDADE]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[QUANTIDADE]"
+                          name="QUANTIDADE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[CUSTO_TOTAL]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[CUSTO_TOTAL]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[CUSTO_TOTAL]"
+                          name="CUSTO_TOTAL"
+                          precision="21"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[LUCRO_TOTAL]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[LUCRO_TOTAL]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[LUCRO_TOTAL]"
+                          name="LUCRO_TOTAL"
+                          precision="22"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[TOTAL_ITEM]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[TOTAL_ITEM]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[TOTAL_ITEM]"
+                          name="TOTAL_ITEM"
+                          precision="10"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[DATA]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[DATA]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[DATA]"
+                          name="DATA"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDCLIENTE]"
+                          dataType="i4"
+                          name="IDCLIENTE" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDVENDEDOR]"
+                          dataType="i4"
+                          name="IDVENDEDOR" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDPRODUTO]"
+                          dataType="i4"
+                          name="IDPRODUTO" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDFORNECEDOR]"
+                          dataType="i4"
+                          name="IDFORNECEDOR" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDNOTA]"
+                          dataType="i4"
+                          name="IDNOTA" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[IDFORMA]"
+                          dataType="i4"
+                          name="IDFORMA" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[QUANTIDADE]"
+                          dataType="i4"
+                          name="QUANTIDADE" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[CUSTO_TOTAL]"
+                          dataType="numeric"
+                          name="CUSTO_TOTAL"
+                          precision="21"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[LUCRO_TOTAL]"
+                          dataType="numeric"
+                          name="LUCRO_TOTAL"
+                          precision="22"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[TOTAL_ITEM]"
+                          dataType="numeric"
+                          name="TOTAL_ITEM"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].ExternalColumns[DATA]"
+                          dataType="dbDate"
+                          name="DATA" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDCLIENTE]"
+                          dataType="i4"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDCLIENTE]"
+                          name="IDCLIENTE" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDVENDEDOR]"
+                          dataType="i4"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDVENDEDOR]"
+                          name="IDVENDEDOR" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDPRODUTO]"
+                          dataType="i4"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDPRODUTO]"
+                          name="IDPRODUTO" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDFORNECEDOR]"
+                          dataType="i4"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDFORNECEDOR]"
+                          name="IDFORNECEDOR" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDNOTA]"
+                          dataType="i4"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDNOTA]"
+                          name="IDNOTA" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDFORMA]"
+                          dataType="i4"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[IDFORMA]"
+                          name="IDFORMA" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[QUANTIDADE]"
+                          dataType="i4"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[QUANTIDADE]"
+                          name="QUANTIDADE" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[CUSTO_TOTAL]"
+                          dataType="numeric"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[CUSTO_TOTAL]"
+                          name="CUSTO_TOTAL"
+                          precision="21"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[LUCRO_TOTAL]"
+                          dataType="numeric"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[LUCRO_TOTAL]"
+                          name="LUCRO_TOTAL"
+                          precision="22"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[TOTAL_ITEM]"
+                          dataType="numeric"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[TOTAL_ITEM]"
+                          name="TOTAL_ITEM"
+                          precision="10"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[DATA]"
+                          dataType="dbDate"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[DATA]"
+                          name="DATA" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="FATO STAGE"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[ST_FATO]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Connections[OleDbConnection]"
+                      connectionManagerID="{3DBD6907-6AB0-4F4F-A705-88AA351CB61E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ANALIMA.COMERCIO_STAGE]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].Columns[IDCLIENTE]"
+                          cachedDataType="i4"
+                          cachedName="IDCLIENTE"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDCLIENTE]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDCLIENTE]" />
+                        <inputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].Columns[IDVENDEDOR]"
+                          cachedDataType="i4"
+                          cachedName="IDVENDEDOR"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDVENDEDOR]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDVENDEDOR]" />
+                        <inputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].Columns[IDPRODUTO]"
+                          cachedDataType="i4"
+                          cachedName="IDPRODUTO"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDPRODUTO]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDPRODUTO]" />
+                        <inputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].Columns[IDFORNECEDOR]"
+                          cachedDataType="i4"
+                          cachedName="IDFORNECEDOR"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDFORNECEDOR]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDFORNECEDOR]" />
+                        <inputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].Columns[IDNOTA]"
+                          cachedDataType="i4"
+                          cachedName="IDNOTA"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDNOTA]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDNOTA]" />
+                        <inputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].Columns[IDFORMA]"
+                          cachedDataType="i4"
+                          cachedName="IDFORMA"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDFORMA]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[IDFORMA]" />
+                        <inputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].Columns[QUANTIDADE]"
+                          cachedDataType="i4"
+                          cachedName="QUANTIDADE"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[QUANTIDADE]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[QUANTIDADE]" />
+                        <inputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].Columns[CUSTO_TOTAL]"
+                          cachedDataType="numeric"
+                          cachedName="CUSTO_TOTAL"
+                          cachedPrecision="21"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[CUSTO_TOTAL]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[CUSTO_TOTAL]" />
+                        <inputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].Columns[LUCRO_TOTAL]"
+                          cachedDataType="numeric"
+                          cachedName="LUCRO_TOTAL"
+                          cachedPrecision="22"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[LUCRO_TOTAL]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[LUCRO_TOTAL]" />
+                        <inputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].Columns[TOTAL_ITEM]"
+                          cachedDataType="numeric"
+                          cachedName="TOTAL_ITEM"
+                          cachedPrecision="10"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[TOTAL_ITEM]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[TOTAL_ITEM]" />
+                        <inputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].Columns[DATA]"
+                          cachedDataType="dbDate"
+                          cachedName="DATA"
+                          externalMetadataColumnId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATA]"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB].Columns[DATA]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDCLIENTE]"
+                          dataType="i4"
+                          name="IDCLIENTE" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDFORNECEDOR]"
+                          dataType="i4"
+                          name="IDFORNECEDOR" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDVENDEDOR]"
+                          dataType="i4"
+                          name="IDVENDEDOR" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDPRODUTO]"
+                          dataType="i4"
+                          name="IDPRODUTO" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDNOTA]"
+                          dataType="i4"
+                          name="IDNOTA" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDFORMA]"
+                          dataType="i4"
+                          name="IDFORMA" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[QUANTIDADE]"
+                          dataType="i4"
+                          name="QUANTIDADE" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[TOTAL_ITEM]"
+                          dataType="numeric"
+                          name="TOTAL_ITEM"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATA]"
+                          dataType="dbDate"
+                          name="DATA" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[CUSTO_TOTAL]"
+                          dataType="numeric"
+                          name="CUSTO_TOTAL"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB].ExternalColumns[LUCRO_TOTAL]"
+                          dataType="numeric"
+                          name="LUCRO_TOTAL"
+                          precision="10"
+                          scale="2" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
+                  endId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Origem OLE DB"
+                  startId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP.Outputs[Saída de Origem OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\CARGA FATO STAGE\TRUNCATE ST_FATO"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{5D1733BD-1D00-485B-BC2B-775614E04204}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE ST_FATO"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3DBD6907-6AB0-4F4F-A705-88AA351CB61E}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE ST_FATO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\CARGA FATO STAGE.PrecedenceConstraints[Restrição]"
+          DTS:CreationName=""
+          DTS:DTSID="{5C0ECA86-B26B-446D-A241-B4F493E44E90}"
+          DTS:From="Package\CARGA FATO STAGE\TRUNCATE ST_FATO"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição"
+          DTS:To="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{CE1768AA-AC1B-4B51-A820-D7D47A533400}"
+      DTS:From="Package\CARGA FATO STAGE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\CARGA FATO DW" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+        <NodeLayout
+          Size="175.2,41.6"
+          Id="Package\CARGA FATO DW\Tarefa Executar SQL"
+          TopLeft="5.5,5.49999999999995" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="186.4,102.4"
+          Size="186.4,145.6"
+          Id="Package\CARGA FATO DW"
+          TopLeft="128.157144864238,325.70000018232" />
+        <NodeLayout
+          Size="184.8,41.6"
+          Id="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados"
+          TopLeft="5.50000000000001,107.1" />
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\CARGA FATO STAGE\TRUNCATE ST_FATO"
+          TopLeft="9.10000000000002,5.49999999999995" />
+        <EdgeLayout
+          Id="Package\CARGA FATO STAGE.PrecedenceConstraints[Restrição]"
+          TopLeft="97.9,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="196,204"
+          Size="196,247.2"
+          Id="Package\CARGA FATO STAGE"
+          TopLeft="123.357144864238,18.5000001823201" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="221.357144864238,265.70000018232">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="OBJETIVO: Carrgar a tabela fato no banco stage,&#xA;e posteriormente carregar a tabela fato no banco DW."
+          ParentId="dc377b92-49cf-4e6b-ad45-0365a473fec9"
+          FontInfo="{assembly:Null}"
+          Size="328.8,56"
+          Id="a8ad27a6-304a-405b-a83a-aef16d00c0d9"
+          TopLeft="6.21428572645016,5.5" />
+        <AnnotationLayout
+          Text="EXECUÇÃO: Limpa e carrega a tabela fato no banco stage,&#xA;depois carrega a tabela fato no banco DW.&#xA;&#xA;CONECTORES: COMERCIO_STAGE e COMERCIO_DW"
+          ParentId="dc377b92-49cf-4e6b-ad45-0365a473fec9"
+          FontInfo="{assembly:Null}"
+          Size="334.4,88"
+          Id="9a7e4c03-c59e-4c94-9e51-e195435c27e3"
+          TopLeft="5.5,52.9117653708144" />
+        <GroupLayout
+          Text="Documentação"
+          ParentId="Package"
+          HeaderHeight="43"
+          IsExpanded="False"
+          PanelSize="341.6,196"
+          Size="341.6,43.2"
+          Id="dc377b92-49cf-4e6b-ad45-0365a473fec9"
+          TopLeft="364.500006301063,24.6176473269413">
+          <GroupLayout.ChildrenIds>
+            <s:String>a8ad27a6-304a-405b-a83a-aef16d00c0d9</s:String>
+            <s:String>9a7e4c03-c59e-4c94-9e51-e195435c27e3</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+        <NodeLayout
+          Size="132.8,41.6"
+          Id="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP"
+          TopLeft="152.985716742885,68.2058832323675" />
+        <NodeLayout
+          Size="139.2,41.6"
+          Id="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE"
+          TopLeft="149.785716742885,169.805883232367" />
+        <EdgeLayout
+          Id="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
+          TopLeft="219.385716742885,109.805883232367">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="OBJETIVO: Carregar a tabela fato no banco stage"
+          ParentId="42329951-44c9-4cf9-b66d-84412d70bd7e"
+          FontInfo="{assembly:Null}"
+          Size="312,40"
+          Id="778ffefa-26a0-4a02-89d8-b6c92b53330a"
+          TopLeft="6.9285714528998,5.5" />
+        <AnnotationLayout
+          Text="EXECUÇÃO: Pega os dados da tabela fato no &#xD;&#xA;banco OLTP e depois carrega a tabela fato no &#xD;&#xA;banco stage.&#xD;&#xA;&#xD;&#xA;CONECTORES: COMERICO_OLTP e COMERCIO_SATGE"
+          ParentId="42329951-44c9-4cf9-b66d-84412d70bd7e"
+          FontInfo="{assembly:Null}"
+          Size="309.6,104"
+          Id="3a12b50f-973c-45a9-9f20-2254df2cec11"
+          TopLeft="5.5,50.6176476915815" />
+        <GroupLayout
+          Text="Documentação "
+          ParentId="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados"
+          HeaderHeight="43"
+          IsExpanded="False"
+          PanelSize="324,209.6"
+          Size="324,43.2"
+          Id="42329951-44c9-4cf9-b66d-84412d70bd7e"
+          TopLeft="318.071434081817,65.1470611186176">
+          <GroupLayout.ChildrenIds>
+            <s:String>778ffefa-26a0-4a02-89d8-b6c92b53330a</s:String>
+            <s:String>3a12b50f-973c-45a9-9f20-2254df2cec11</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO STAGE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA FATO STAGE\Tarefa Fluxo de Dados\FATO OLTP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
